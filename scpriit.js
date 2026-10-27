@@ -1,92 +1,188 @@
 
-const menuToggle = document.getElementById("menuToggle");
-const navigation = document.getElementById("navigation");
-const form = document.getElementById("quoteForm");
-const formMessage = document.getElementById("formMessage");
+"use strict";
 
-document.getElementById("year").textContent =
-  new Date().getFullYear();
+/*
+  SURYAVOLT HYBRID SOLAR ENERGY
 
-// Mobile navigation
-menuToggle.addEventListener("click", () => {
-  const isOpen = navigation.classList.toggle("open");
-  menuToggle.setAttribute("aria-expanded", String(isOpen));
-  menuToggle.textContent = isOpen ? "✕" : "☰";
-});
+  IMPORTANT:
+  Replace the WhatsApp number below with your real business number.
+  Use country code + number, digits only, without + or spaces.
+  Example format for India: 91XXXXXXXXXX
+*/
 
-// Close menu after clicking a navigation link
-navigation.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    navigation.classList.remove("open");
+const WHATSAPP_NUMBER = "916307680761";
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Automatically update the copyright year
+  const yearElement = document.getElementById("currentYear");
+
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+
+  // Mobile navigation
+  const menuToggle = document.getElementById("menuToggle");
+  const mainNav = document.getElementById("mainNav");
+
+  function closeMenu() {
+    if (!menuToggle || !mainNav) return;
+
     menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.textContent = "☰";
-  });
-});
-
-// Customer enquiry form
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  formMessage.textContent = "";
-
-  if (!form.reportValidity()) return;
-
-  const name = document.getElementById("customerName").value.trim();
-  const phone = document.getElementById("customerPhone").value.trim();
-  const city = document.getElementById("customerCity").value.trim();
-  const property = document.getElementById("propertyType").value;
-  const solar = document.getElementById("solarType").value;
-  const bill = document.getElementById("electricityBill").value;
-  const consent = document.getElementById("consent").checked;
-
-  if (!/^[6-9][0-9]{9}$/.test(phone)) {
-    formMessage.textContent =
-      "Please enter a valid 10-digit Indian mobile number.";
-    return;
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
+    mainNav.classList.remove("is-open");
+    document.body.classList.remove("menu-open");
   }
 
-  if (!consent) {
-    formMessage.textContent =
-      "Please agree before continuing to WhatsApp.";
-    return;
+  function openMenu() {
+    if (!menuToggle || !mainNav) return;
+
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuToggle.setAttribute("aria-label", "Close navigation menu");
+    mainNav.classList.add("is-open");
+    document.body.classList.add("menu-open");
   }
 
-  const businessWhatsApp = "916307680761";
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
 
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
 
-  if (!/^91[6-9][0-9]{9}$/.test(businessWhatsApp)) {
-    formMessage.textContent =
-      "Website setup pending: the company WhatsApp number must be configured.";
-    return;
+    // Close the menu after a navigation link is selected
+    mainNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    // Close the menu with Escape
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    });
+
+    // Close the menu if the user clicks elsewhere
+    document.addEventListener("click", (event) => {
+      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+
+      if (
+        isOpen &&
+        !mainNav.contains(event.target) &&
+        !menuToggle.contains(event.target)
+      ) {
+        closeMenu();
+      }
+    });
+
+    // Reset menu state when returning to desktop layout
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 760) {
+        closeMenu();
+      }
+    });
   }
 
-  const enquiry = [
-    "Hello Suryavolt Hybrid Solar Energy!",
-    "",
-    "I would like a solar consultation.",
-    "",
-    "Name: " + name,
-    "Customer Phone: " + phone,
-    "City: " + city,
-    "Property Type: " + property,
-    "Solar Requirement: " + solar,
-    "Monthly Electricity Bill: " + bill
-  ].join("\n");
+  // Check that a real WhatsApp number has been configured
+  function hasValidWhatsAppNumber() {
+    return /^\d{10,15}$/.test(WHATSAPP_NUMBER);
+  }
 
-  const whatsappURL =
-    "https://wa.me/" + businessWhatsApp +
-    "?text=" + encodeURIComponent(enquiry);
+  // Floating WhatsApp button
+  const floatingWhatsApp = document.getElementById("floatingWhatsApp");
 
-  const whatsappWindow = window.open(
-    whatsappURL,
-    "_blank",
-    "noopener,noreferrer"
-  );
+  if (floatingWhatsApp) {
+    floatingWhatsApp.addEventListener("click", (event) => {
+      event.preventDefault();
 
-  if (whatsappWindow) {
-    formMessage.textContent =
-      "WhatsApp opened. Review your enquiry and press Send.";
-  } else {
-    formMessage.textContent =
-      "Please allow pop-ups for this website and try again.";
+      if (!hasValidWhatsAppNumber()) {
+        alert(
+          "Please add your real WhatsApp business number in script.js first."
+        );
+        return;
+      }
+
+      const message =
+        "Hello Suryavolt Hybrid Solar Energy, I would like to know more about your solar solutions.";
+
+      const whatsappURL =
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        encodeURIComponent(message);
+
+      window.open(whatsappURL, "_blank", "noopener,noreferrer");
+    });
+  }
+
+  // Solar enquiry form
+  const contactForm = document.getElementById("contactForm");
+  const formStatus = document.getElementById("formStatus");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!contactForm.reportValidity()) {
+        return;
+      }
+
+      if (!hasValidWhatsAppNumber()) {
+        if (formStatus) {
+          formStatus.textContent =
+            "Please configure your WhatsApp business number in script.js before sending enquiries.";
+        }
+
+        return;
+      }
+
+      const formData = new FormData(contactForm);
+
+      const name = String(formData.get("name") || "").trim();
+      const phone = String(formData.get("phone") || "").trim();
+      const property = String(formData.get("property") || "").trim();
+      const location = String(formData.get("location") || "").trim();
+      const message = String(formData.get("message") || "").trim();
+
+      const whatsappMessage = [
+        "Hello Suryavolt Hybrid Solar Energy!",
+        "",
+        "I would like to enquire about solar solutions.",
+        "",
+        "Name: " + name,
+        "Phone: " + phone,
+        "Property Type: " + property,
+        "Location: " + location,
+        "Requirements: " + (message || "Not specified"),
+        "",
+        "Please contact me regarding my enquiry."
+      ].join("\n");
+
+      const whatsappURL =
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        encodeURIComponent(whatsappMessage);
+
+      if (formStatus) {
+        formStatus.textContent =
+          "WhatsApp is opening. Please review your enquiry and press Send in WhatsApp.";
+      }
+
+      const whatsappWindow = window.open(
+        whatsappURL,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+      // If the browser blocks a new tab, offer a direct link
+      if (!whatsappWindow && formStatus) {
+        formStatus.textContent =
+          "If WhatsApp did not open, allow pop-ups in your browser and try again.";
+      }
+    });
   }
 });

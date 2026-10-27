@@ -138,6 +138,6 @@ if (contactForm) {
       "?text=" +
       encodeURIComponent(message);
 
-    window.open(whatsappURL, "_blank", "noopener,noreferrer");
+    window.location.href = whatsappURL;
   });
 }

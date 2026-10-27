@@ -1,13 +1,13 @@
+
 "use strict";
 
-// Mobile navigation menu
+// Mobile navigation
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
 if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
     const isOpen = navLinks.classList.toggle("open");
-
     menuToggle.setAttribute("aria-expanded", String(isOpen));
     menuToggle.textContent = isOpen ? "✕" : "☰";
   });
@@ -21,14 +21,14 @@ if (menuToggle && navLinks) {
   });
 }
 
-// Automatically update copyright year
+// Copyright year
 const currentYear = document.getElementById("currentYear");
 
 if (currentYear) {
   currentYear.textContent = new Date().getFullYear();
 }
 
-// Solar requirement estimator
+// Solar calculator
 const solarCalculator = document.getElementById("solarCalculator");
 const calculatorResult = document.getElementById("calculatorResult");
 
@@ -36,45 +36,29 @@ if (solarCalculator && calculatorResult) {
   solarCalculator.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const monthlyBill = Number(
-      document.getElementById("monthlyBill").value
-    );
+    const billInput = document.getElementById("monthlyBill");
+    const roofInput = document.getElementById("roofArea");
 
-    const roofArea = Number(
-      document.getElementById("roofArea").value
-    );
+    const monthlyBill = Number(billInput.value);
+    const roofArea = Number(roofInput.value);
 
     if (
+      billInput.value.trim() === "" ||
+      roofInput.value.trim() === "" ||
       !Number.isFinite(monthlyBill) ||
       !Number.isFinite(roofArea) ||
-      monthlyBill < 0 ||
-      roofArea < 0
+      monthlyBill <= 0 ||
+      roofArea <= 0
     ) {
       calculatorResult.textContent =
-        "Please enter valid bill and roof area values.";
+        "Please enter a bill and roof area greater than zero.";
       return;
     }
 
-    if (monthlyBill === 0 || roofArea === 0) {
-      calculatorResult.textContent =
-        "Accurate rough estimate ke liye bill aur roof area dono zero se zyada enter karein.";
-      return;
-    }
-
-    // Illustrative assumptions only, not a guaranteed system quote.
+    // Illustrative estimate only; not a final system quote.
     const billBasedCapacity = monthlyBill / 600;
     const roofBasedCapacity = roofArea / 100;
-    const estimatedCapacity = Math.min(
-      billBasedCapacity,
-      roofBasedCapacity
-    );
-
-    const formattedCapacity = estimatedCapacity.toLocaleString(
-      "en-IN",
-      {
-        maximumFractionDigits: 1
-      }
-    );
+    const capacity = Math.min(billBasedCapacity, roofBasedCapacity);
 
     calculatorResult.replaceChildren();
 
@@ -82,39 +66,48 @@ if (solarCalculator && calculatorResult) {
     const strong = document.createElement("strong");
 
     strong.textContent =
-      "Illustrative solar capacity: " + formattedCapacity + " kW";
+      "Estimated solar capacity: " +
+      capacity.toLocaleString("en-IN", {
+        maximumFractionDigits: 1
+      }) +
+      " kW";
 
     heading.appendChild(strong);
 
     const note = document.createElement("p");
     note.textContent =
-      "Yeh sirf initial estimate hai. Actual capacity aur savings ke liye electricity usage, local sunlight, shading aur site inspection check karna zaroori hai.";
+      "This is a rough estimate, not a quotation. Actual system size depends on electricity usage, location, sunlight, shading and site inspection.";
 
     calculatorResult.append(heading, note);
   });
 }
 
-// WhatsApp consultation form
+// Customer consultation form -> WhatsApp
 const contactForm = document.getElementById("contactForm");
+const contactStatus = document.getElementById("contactStatus");
+
+// WhatsApp number in international format, digits only.
+const whatsappNumber = "916307680761";
 
 if (contactForm) {
   contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const customerName =
-      document.getElementById("customerName").value.trim();
+    const nameField = document.getElementById("customerName");
+    const phoneField = document.getElementById("customerPhone");
+    const typeField = document.getElementById("solarType");
+    const messageField = document.getElementById("customerMessage");
 
-    const customerPhone =
-      document.getElementById("customerPhone").value.trim();
-
-    const solarType =
-      document.getElementById("solarType").value;
-
-    const customerMessage =
-      document.getElementById("customerMessage").value.trim();
+    const customerName = nameField.value.trim();
+    const customerPhone = phoneField.value.trim();
+    const solarType = typeField.value;
+    const customerMessage = messageField.value.trim();
 
     if (!customerName || !customerPhone || !solarType) {
-      alert("Please fill in your name, phone number and solar requirement.");
+      if (contactStatus) {
+        contactStatus.textContent =
+          "Please fill in your name, phone number and solar requirement.";
+      }
       return;
     }
 
@@ -131,13 +124,32 @@ if (contactForm) {
       "Please contact me with more details."
     ].join("\n");
 
-    const whatsappNumber = "916307680761";
     const whatsappURL =
       "https://wa.me/" +
       whatsappNumber +
       "?text=" +
       encodeURIComponent(message);
 
-    window.location.href = whatsappURL;
+    if (contactStatus) {
+      contactStatus.textContent =
+        "Opening WhatsApp. If it does not open, use the link below.";
+      contactStatus.replaceChildren();
+
+      const statusText = document.createElement("p");
+      statusText.textContent =
+        "WhatsApp nahi khul raha? Neeche click karein:";
+
+      const whatsappLink = document.createElement("a");
+      whatsappLink.href = whatsappURL;
+      whatsappLink.target = "_blank";
+      whatsappLink.rel = "noopener noreferrer";
+      whatsappLink.textContent = "Open WhatsApp";
+      whatsappLink.className = "text-link";
+
+      contactStatus.append(statusText, whatsappLink);
+    }
+
+    // Direct navigation avoids popup blockers.
+    window.location.assign(whatsappURL);
   });
 }

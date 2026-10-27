@@ -1019,3 +1019,120 @@ textarea::placeholder {
   }
 }
 
+/* Mobile Responsive Fix */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: min(100% - 32px, 1140px);
+  margin-inline: auto;
+}
+
+h1 {
+  font-size: clamp(28px, 5vw, 56px);
+  line-height: 1.15;
+  overflow-wrap: break-word;
+}
+
+h2 {
+  font-size: clamp(23px, 4vw, 38px);
+  line-height: 1.25;
+}
+
+p {
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: calc(100% - 28px);
+  }
+
+  section {
+    padding-top: 42px;
+    padding-bottom: 42px;
+  }
+
+  .hero {
+    padding: 45px 0;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .navbar {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .brand-text strong {
+    font-size: 16px;
+  }
+
+  .brand-text small {
+    font-size: 8px;
+  }
+
+  .nav-links {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .services-grid,
+  .service-grid,
+  .cards-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .btn,
+  .button {
+    max-width: 100%;
+    white-space: normal;
+  }
+}
+
+

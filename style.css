@@ -960,3 +960,62 @@ textarea::placeholder {
     transform: none;
   }
 }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-text strong {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.brand-text small {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .brand-text strong {
+    font-size: 16px;
+  }
+
+  .brand-text small {
+    font-size: 8px;
+  }
+}
+

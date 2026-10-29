@@ -1,34 +1,50 @@
 
+/* ========================================
+   SURYAVOLT HYBRID SOLAR ENERGY
+   Website JavaScript
+======================================== */
+
 "use strict";
 
-// Mobile navigation
+// Your WhatsApp number (India country code +91)
+const WHATSAPP_NUMBER = "916307680761";
+
+// 1. MOBILE NAVIGATION MENU
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
 if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("open");
+    const isOpen = navLinks.classList.toggle("active");
+
     menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation menu" : "Open navigation menu"
+    );
     menuToggle.textContent = isOpen ? "✕" : "☰";
   });
 
   navLinks.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      navLinks.classList.remove("open");
+      navLinks.classList.remove("active");
       menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation menu");
       menuToggle.textContent = "☰";
     });
   });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      navLinks.classList.remove("active");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation menu");
+      menuToggle.textContent = "☰";
+    }
+  });
 }
 
-// Copyright year
-const currentYear = document.getElementById("currentYear");
-
-if (currentYear) {
-  currentYear.textContent = new Date().getFullYear();
-}
-
-// Solar calculator
+// 2. SOLAR CALCULATOR
 const solarCalculator = document.getElementById("solarCalculator");
 const calculatorResult = document.getElementById("calculatorResult");
 
@@ -36,72 +52,143 @@ if (solarCalculator && calculatorResult) {
   solarCalculator.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const billInput = document.getElementById("monthlyBill");
-    const roofInput = document.getElementById("roofArea");
+    const monthlyBill = Number(
+      document.getElementById("monthlyBill").value
+    );
 
-    const monthlyBill = Number(billInput.value);
-    const roofArea = Number(roofInput.value);
+    const roofArea = Number(
+      document.getElementById("roofArea").value
+    );
+
+    const solarType = document.getElementById("solarType").value;
 
     if (
-      billInput.value.trim() === "" ||
-      roofInput.value.trim() === "" ||
       !Number.isFinite(monthlyBill) ||
       !Number.isFinite(roofArea) ||
-      monthlyBill <= 0 ||
+      monthlyBill < 0 ||
       roofArea <= 0
     ) {
       calculatorResult.textContent =
-        "Please enter a bill and roof area greater than zero.";
+        "Please enter a valid electricity bill and roof area.";
       return;
     }
 
-    // Illustrative estimate only; not a final system quote.
-    const billBasedCapacity = monthlyBill / 600;
-    const roofBasedCapacity = roofArea / 100;
-    const capacity = Math.min(billBasedCapacity, roofBasedCapacity);
+    /*
+      Rough planning assumptions:
+      1 kW may need approximately 80–100 sq. ft.
+      Actual requirements depend on panels and layout.
+    */
 
-    calculatorResult.replaceChildren();
+    const roofCapacity = roofArea / 100;
 
-    const heading = document.createElement("p");
-    const strong = document.createElement("strong");
+    // Approximate capacity inferred from bill.
+    // This is only a planning estimate, not a bill-based design.
+    const billCapacity = monthlyBill / 600;
 
-    strong.textContent =
-      "Estimated solar capacity: " +
-      capacity.toLocaleString("en-IN", {
-        maximumFractionDigits: 1
-      }) +
-      " kW";
+    const estimatedCapacity = Math.max(
+      0,
+      Math.min(roofCapacity, billCapacity)
+    );
 
-    heading.appendChild(strong);
+    const systemSize = Math.round(estimatedCapacity * 10) / 10;
 
-    const note = document.createElement("p");
-    note.textContent =
-      "This is a rough estimate, not a quotation. Actual system size depends on electricity usage, location, sunlight, shading and site inspection.";
+    // Indicative Indian solar yield assumption:
+    // approximately 100–140 kWh per kW per month.
+    const monthlyUnitsLow = Math.round(systemSize * 100);
+    const monthlyUnitsHigh = Math.round(systemSize * 140);
 
-    calculatorResult.append(heading, note);
+    // Broad illustrative project cost assumptions, not a quote.
+    const costPerKw = {
+      "on-grid": [45000, 75000],
+      "hybrid": [80000, 140000],
+      "off-grid": [70000, 120000]
+    };
+
+    const selectedCost = costPerKw[solarType] || costPerKw["on-grid"];
+
+    const costLow = Math.round(systemSize * selectedCost[0]);
+    const costHigh = Math.round(systemSize * selectedCost[1]);
+
+    const systemNames = {
+      "on-grid": "On-grid Solar",
+      "hybrid": "Hybrid Solar",
+      "off-grid": "Off-grid Solar"
+    };
+
+    const formatINR = (amount) =>
+      new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 0
+      }).format(amount);
+
+    if (systemSize <= 0) {
+      calculatorResult.textContent =
+        "Your bill suggests that more information is needed. Please contact us for a suitable system estimate.";
+      return;
+    }
+
+    calculatorResult.innerHTML = `
+      <h4>☀ Your Preliminary Solar Estimate</h4>
+      <p><strong>System type:</strong> ${systemNames[solarType] || "Solar System"}</p>
+      <p><strong>Estimated capacity:</strong> ${systemSize.toFixed(1)} kW</p>
+      <p><strong>Possible monthly generation:</strong> ${monthlyUnitsLow}–${monthlyUnitsHigh} units</p>
+      <p><strong>Illustrative system cost:</strong> ${formatINR(costLow)} – ${formatINR(costHigh)}</p>
+      <p class="note">This is a rough estimate, not a quotation. Actual price and output depend on location, equipment, roof shading, battery size, installation, applicable taxes and current market rates.</p>
+      <button type="button" class="btn btn-primary btn-full" id="solarQuoteButton">
+        Get a Detailed Quote on WhatsApp
+      </button>
+    `;
+
+    const solarQuoteButton = document.getElementById("solarQuoteButton");
+
+    if (solarQuoteButton) {
+      solarQuoteButton.addEventListener("click", () => {
+        const message = [
+          "Hello SURYAVOLT HYBRID SOLAR ENERGY,",
+          "",
+          "I would like a detailed solar quotation.",
+          `System type: ${systemNames[solarType]}`,
+          `Monthly electricity bill: ${formatINR(monthlyBill)}`,
+          `Usable roof area: ${roofArea} sq. ft.`,
+          `Estimated system capacity: ${systemSize.toFixed(1)} kW`,
+          "",
+          "Please help me with the suitable system, actual pricing and installation details."
+        ].join("\n");
+
+        openWhatsApp(message);
+      });
+    }
   });
 }
 
-// Customer consultation form -> WhatsApp
+// 3. WHATSAPP HELPER
+function openWhatsApp(message) {
+  const url =
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
+// 4. CONTACT FORM -> WHATSAPP
 const contactForm = document.getElementById("contactForm");
 const contactStatus = document.getElementById("contactStatus");
-
-// WhatsApp number in international format, digits only.
-const whatsappNumber = "916307680761";
 
 if (contactForm) {
   contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const nameField = document.getElementById("customerName");
-    const phoneField = document.getElementById("customerPhone");
-    const typeField = document.getElementById("solarType");
-    const messageField = document.getElementById("customerMessage");
+    const customerName =
+      document.getElementById("customerName").value.trim();
 
-    const customerName = nameField.value.trim();
-    const customerPhone = phoneField.value.trim();
-    const solarType = typeField.value;
-    const customerMessage = messageField.value.trim();
+    const customerPhone =
+      document.getElementById("customerPhone").value.trim();
+
+    const solarType =
+      document.getElementById("contactSolarType").value;
+
+    const customerMessage =
+      document.getElementById("customerMessage").value.trim();
 
     if (!customerName || !customerPhone || !solarType) {
       if (contactStatus) {
@@ -111,45 +198,50 @@ if (contactForm) {
       return;
     }
 
-    const message = [
-      "Hello SURYAVOLT HYBRID SOLAR ENERGY,",
-      "",
-      "I would like to enquire about solar solutions.",
-      "",
-      "Name: " + customerName,
-      "Phone: " + customerPhone,
-      "Requirement: " + solarType,
-      "Message: " + (customerMessage || "No additional message"),
-      "",
-      "Please contact me with more details."
-    ].join("\n");
+    if (customerName.length > 100 || customerMessage.length > 1000) {
+      if (contactStatus) {
+        contactStatus.textContent =
+          "Please shorten your name or message.";
+      }
+      return;
+    }
 
-    const whatsappURL =
-      "https://wa.me/" +
-      whatsappNumber +
-      "?text=" +
-      encodeURIComponent(message);
+    const message = [
+      "New enquiry - SURYAVOLT HYBRID SOLAR ENERGY",
+      "",
+      `Name: ${customerName}`,
+      `Customer phone: ${customerPhone}`,
+      `Solar requirement: ${solarType}`,
+      `Message: ${customerMessage || "No additional message"}`,
+      "",
+      "Please contact me about this solar enquiry."
+    ].join("\n");
 
     if (contactStatus) {
       contactStatus.textContent =
-        "Opening WhatsApp. If it does not open, use the link below.";
-      contactStatus.replaceChildren();
-
-      const statusText = document.createElement("p");
-      statusText.textContent =
-        "WhatsApp nahi khul raha? Neeche click karein:";
-
-      const whatsappLink = document.createElement("a");
-      whatsappLink.href = whatsappURL;
-      whatsappLink.target = "_blank";
-      whatsappLink.rel = "noopener noreferrer";
-      whatsappLink.textContent = "Open WhatsApp";
-      whatsappLink.className = "text-link";
-
-      contactStatus.append(statusText, whatsappLink);
+        "Opening WhatsApp with your enquiry. Please press Send in WhatsApp to submit it.";
     }
 
-    // Direct navigation avoids popup blockers.
-    window.location.assign(whatsappURL);
+    openWhatsApp(message);
   });
 }
+
+// 5. AUTOMATIC FOOTER YEAR
+const currentYear = document.getElementById("currentYear");
+
+if (currentYear) {
+  currentYear.textContent = new Date().getFullYear();
+}
+
+// 6. FLOATING WHATSAPP BUTTON
+// Update the link automatically to use the correct number.
+document.querySelectorAll(".floating-whatsapp").forEach((button) => {
+  const message =
+    "Hello SURYAVOLT HYBRID SOLAR ENERGY, I want to know about your solar solutions.";
+
+  button.href =
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+  button.target = "_blank";
+  button.rel = "noopener noreferrer";
+});

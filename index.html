@@ -1,262 +1,499 @@
 
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SURYAVOLT HYBRID SOLAR ENERGY - Solar panels, hybrid solar systems and solar energy solutions.">
-  <meta name="theme-color" content="#071b12">
-  <title>SURYAVOLT HYBRID SOLAR ENERGY</title>
+
+  <title>SURYAVOLT HYBRID SOLAR ENERGY | Solar Solutions</title>
+  <meta name="description" content="Explore solar panel installation, hybrid solar systems, rooftop solar solutions and solar energy services from SURYAVOLT HYBRID SOLAR ENERGY.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#063b2b">
+
+  <!-- Replace with your real website domain before publishing -->
+  <link rel="canonical" href="https://example.com/">
+
+  <meta property="og:title" content="SURYAVOLT HYBRID SOLAR ENERGY">
+  <meta property="og:description" content="Power your future with smart solar energy solutions.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<header class="site-header">
-  <nav class="navbar container" aria-label="Main navigation">
-    <a href="#home" class="brand">
-      <img src="logo.png" alt="Suryavolt Logo" class="logo">
-      <span class="brand-text">
-        <strong>SURYAVOLT</strong>
-        <small>HYBRID SOLAR ENERGY</small>
-      </span>
-    </a>
+  <!-- Header -->
+  <header class="header" id="home">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="brand" href="#home">
+        <img src="logo.png" alt="SURYAVOLT HYBRID SOLAR ENERGY logo">
+        <span>SURYAVOLT <small>HYBRID SOLAR ENERGY</small></span>
+      </a>
 
-    <button id="menuToggle" class="menu-toggle" type="button"
-      aria-label="Toggle navigation" aria-expanded="false"
-      aria-controls="navLinks">☰</button>
+      <button class="menu-toggle" id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks">
+        ☰
+      </button>
 
-    <div class="nav-links" id="navLinks">
-      <a href="#home">Home</a>
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#calculator">Calculator</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-</header>
-
-<main>
-  <section class="hero" id="home">
-    <div class="hero-glow"></div>
-    <div class="container hero-content">
-      <div class="hero-text">
-        <span class="eyebrow">☀ CLEAN ENERGY · BRIGHT FUTURE</span>
-        <h1>Power Your Home With <span>Solar Energy</span></h1>
-        <p>
-          Smart solar solutions for homes and businesses.
-          Bijli ke bill mein bachat karein aur clean energy ke saath
-          apna future bright banayein.
-        </p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary">Get a Free Consultation ↗</a>
-          <a href="#services" class="btn btn-outline">Explore Services</a>
-        </div>
-        <div class="hero-points">
-          <span>✓ Clean Energy</span>
-          <span>✓ Smart Solutions</span>
-          <span>✓ Expert Guidance</span>
-        </div>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#projects">Projects</a>
+        <a href="#calculator">Calculator</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact" class="nav-cta">Get a Quote ↗</a>
       </div>
+    </nav>
+  </header>
 
-      <div class="solar-visual" aria-label="Solar energy illustration">
-        <div class="sun">☀</div>
-        <div class="orbit orbit-one"></div>
-        <div class="orbit orbit-two"></div>
-        <div class="solar-panel"><div class="panel-grid"></div></div>
-        <div class="energy-label">SOLAR POWER <span>● ACTIVE</span></div>
-        <div class="floating-card card-top">⚡ Clean Energy</div>
-        <div class="floating-card card-bottom">🌱 Greener Tomorrow</div>
-      </div>
-    </div>
-    <div class="hero-bottom"></div>
-  </section>
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-glow"></div>
 
-  <section class="stats-section">
-    <div class="container stats-grid">
-      <div class="stat"><strong>☀</strong><span>Solar Energy Solutions</span></div>
-      <div class="stat"><strong>⚡</strong><span>Energy-Efficient Systems</span></div>
-      <div class="stat"><strong>🏠</strong><span>Home &amp; Business</span></div>
-      <div class="stat"><strong>🌿</strong><span>Cleaner Energy Future</span></div>
-    </div>
-  </section>
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <span class="eyebrow">☀ SMART & SUSTAINABLE ENERGY</span>
 
-  <section class="section" id="services">
-    <div class="container">
-      <div class="section-heading">
-        <span class="eyebrow">WHAT WE OFFER</span>
-        <h2>Our Solar <span>Solutions</span></h2>
-        <p>Apni zaroorat ke hisaab se solar energy solution chuniye.</p>
-      </div>
+          <h1>Power Your Future<br>
+            With <span>Clean Solar Energy.</span>
+          </h1>
 
-      <div class="service-grid">
-        <article class="service-card">
-          <div class="service-icon">🏠</div>
-          <h3>Residential Solar</h3>
-          <p>Ghar ke liye solar solutions, jisse aap apni electricity needs ko behtar tareeke se manage kar sakein.</p>
-          <a href="#contact" class="text-link">Enquire Now ↗</a>
-        </article>
+          <p>
+            Switch to smarter energy with rooftop solar, hybrid systems
+            and customized solar solutions for your home and business.
+          </p>
 
-        <article class="service-card featured">
-          <div class="service-icon">🔋</div>
-          <h3>Hybrid Solar System</h3>
-          <p>Solar panels, inverter aur compatible battery storage ke saath hybrid system ke options samjhein.</p>
-          <a href="#contact" class="text-link">Enquire Now ↗</a>
-        </article>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Get Free Consultation ↗</a>
+            <a class="btn btn-outline" href="#services">Explore Solutions</a>
+          </div>
 
-        <article class="service-card">
-          <div class="service-icon">🏢</div>
-          <h3>Commercial Solar</h3>
-          <p>Shops, offices aur businesses ke liye suitable solar system ki planning mein madad.</p>
-          <a href="#contact" class="text-link">Enquire Now ↗</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section about-section" id="about">
-    <div class="container about-grid">
-      <div class="about-art">
-        <div class="about-sun">☀</div>
-        <div class="about-panel">
-          <span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span>
-        </div>
-        <div class="about-badge">A BRIGHTER FUTURE</div>
-      </div>
-
-      <div class="about-content">
-        <span class="eyebrow">ABOUT SURYAVOLT</span>
-        <h2>Moving Towards a <span>Solar-Powered Future</span></h2>
-        <p>
-          SURYAVOLT HYBRID SOLAR ENERGY ka goal customers ko solar
-          energy ke options samajhne aur unki requirements ke hisaab se
-          suitable solutions choose karne mein madad karna hai.
-        </p>
-        <ul class="check-list">
-          <li>Solar system selection mein guidance</li>
-          <li>Residential aur commercial requirements</li>
-          <li>Hybrid solar options ki jaankari</li>
-          <li>Requirement-based consultation</li>
-        </ul>
-        <a href="#contact" class="btn btn-primary">Talk to Our Team ↗</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section calculator-section" id="calculator">
-    <div class="container calculator-grid">
-      <div>
-        <span class="eyebrow">SOLAR ESTIMATOR</span>
-        <h2>Estimate Your <span>Solar Requirement</span></h2>
-        <p>Apna monthly electricity bill aur available roof space enter karein. Yeh rough estimate hai, final system size nahi.</p>
-        <div class="note">
-          <strong>Note:</strong> Actual capacity aur savings location,
-          sunlight, tariff, roof direction, shading aur system cost par depend karti hain.
-        </div>
-      </div>
-
-      <form class="calculator-card" id="solarCalculator">
-        <label for="monthlyBill">Monthly electricity bill (₹)</label>
-        <input id="monthlyBill" name="monthlyBill" type="number"
-          min="1" max="10000000" step="any"
-          placeholder="Example: 2500" required>
-
-        <label for="roofArea">Available roof area (sq. ft.)</label>
-        <input id="roofArea" name="roofArea" type="number"
-          min="1" max="1000000" step="any"
-          placeholder="Example: 300" required>
-
-        <button class="btn btn-primary full-width" type="submit">
-          Calculate Estimate
-        </button>
-
-        <div class="calculator-result" id="calculatorResult"
-          aria-live="polite" role="status">
-          <span>Your rough estimate will appear here.</span>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <section class="contact-section section" id="contact">
-    <div class="container contact-grid">
-      <div class="contact-content">
-        <span class="eyebrow">LET'S CONNECT</span>
-        <h2>Ready to Explore <span>Solar Energy?</span></h2>
-        <p>Apni requirements share karein. Hamari team se solar solutions ke baare mein baat karne ke liye form bharein.</p>
-
-        <div class="contact-detail">
-          <span class="detail-icon">👤</span>
-          <div><small>Contact Person</small><strong>Mr Dev Pratap Singh</strong></div>
-        </div>
-
-        <div class="contact-detail">
-          <span class="detail-icon">✉</span>
-          <div>
-            <small>Email</small>
-            <a href="mailto:suryavolthybridsolarenergy@gmail.com">
-              suryavolthybridsolarenergy@gmail.com
-            </a>
+          <div class="hero-points">
+            <span>✓ Customized Solutions</span>
+            <span>✓ Professional Installation</span>
+            <span>✓ Clean Energy</span>
           </div>
         </div>
 
-        <div class="contact-detail">
-          <span class="detail-icon">💬</span>
-          <div><small>WhatsApp</small><strong>+91 6307680761</strong></div>
+        <div class="hero-visual reveal">
+          <img
+            src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1100&q=85"
+            alt="Solar panels generating clean electricity"
+            fetchpriority="high">
+
+          <div class="floating-card">
+            <span class="sun-icon">☀</span>
+            <div>
+              <strong>Clean Energy</strong>
+              <small>A brighter tomorrow</small>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <form class="contact-form" id="contactForm">
-        <h3>Request a Consultation</h3>
-        <p>Details bharein; WhatsApp par message ready ho jayega.</p>
+    <!-- Benefits -->
+    <section class="benefit-strip">
+      <div class="container benefit-grid">
+        <div><strong>☀ Solar Power</strong><span>Renewable energy</span></div>
+        <div><strong>⌂ Rooftop Systems</strong><span>Home & business</span></div>
+        <div><strong>ϟ Hybrid Solutions</strong><span>Flexible energy options</span></div>
+        <div><strong>♻ Green Future</strong><span>Cleaner environment</span></div>
+      </div>
+    </section>
 
-        <label for="customerName">Your Name</label>
-        <input id="customerName" name="customerName" type="text"
-          maxlength="80" placeholder="Enter your name" required>
+    <!-- Services -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">OUR SERVICES</span>
+          <h2>Solar Solutions for <span>Every Need</span></h2>
+          <p>Explore solar energy options designed around your energy requirements.</p>
+        </div>
 
-        <label for="customerPhone">Phone Number</label>
-        <input id="customerPhone" name="customerPhone" type="tel"
-          maxlength="20" placeholder="Enter your phone number" required>
+        <div class="card-grid">
+          <article class="service-card reveal">
+            <div class="card-icon">☀</div>
+            <h3>Rooftop Solar</h3>
+            <p>Solar panel systems for homes, offices and commercial rooftops.</p>
+            <a href="#contact">Request Details ↗</a>
+          </article>
 
-        <label for="solarType">Solar Requirement</label>
-        <select id="solarType" name="solarType" required>
-          <option value="">Choose a service</option>
-          <option value="Residential Solar">Residential Solar</option>
-          <option value="Hybrid Solar System">Hybrid Solar System</option>
-          <option value="Commercial Solar">Commercial Solar</option>
-          <option value="General Consultation">General Consultation</option>
-        </select>
+          <article class="service-card reveal">
+            <div class="card-icon">ϟ</div>
+            <h3>Hybrid Solar Systems</h3>
+            <p>Solar solutions combining suitable inverters, batteries and panels.</p>
+            <a href="#contact">Request Details ↗</a>
+          </article>
 
-        <label for="customerMessage">Message</label>
-        <textarea id="customerMessage" name="customerMessage"
-          rows="4" maxlength="1000"
-          placeholder="Tell us about your requirements"></textarea>
+          <article class="service-card reveal">
+            <div class="card-icon">⌂</div>
+            <h3>Commercial Solar</h3>
+            <p>Customized solar installations for shops, offices and businesses.</p>
+            <a href="#contact">Request Details ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        <button type="submit" class="btn btn-primary full-width">
-          Send via WhatsApp ↗
-        </button>
-        <p class="form-note">WhatsApp khulne par aap message check karke khud send kar sakte hain.</p>
-        <p id="contactStatus" class="contact-status" aria-live="polite"></p>
-      </form>
+    <!-- Products and pricing -->
+    <section class="section section-soft" id="products">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">SOLAR PRODUCTS</span>
+          <h2>Explore Our <span>Solar Solutions</span></h2>
+          <p>Final pricing depends on system size, equipment, roof conditions and installation requirements.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="product-card reveal">
+            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=700&q=80"
+              alt="Rooftop solar panel system" loading="lazy">
+            <div class="product-body">
+              <span class="product-tag">HOME SOLAR</span>
+              <h3>Rooftop Solar System</h3>
+              <p>Designed for household electricity requirements.</p>
+              <strong class="price">Get a custom quote</strong>
+              <a class="btn btn-primary btn-full" href="#contact">Check Price</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <img src="https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&w=700&q=80"
+              alt="Solar power equipment" loading="lazy">
+            <div class="product-body">
+              <span class="product-tag">HYBRID SOLAR</span>
+              <h3>Hybrid Solar System</h3>
+              <p>Ask about battery backup and compatible inverter options.</p>
+              <strong class="price">Get a custom quote</strong>
+              <a class="btn btn-primary btn-full" href="#contact">Check Price</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=700&q=80"
+              alt="Solar panels in sunlight" loading="lazy">
+            <div class="product-body">
+              <span class="product-tag">BUSINESS SOLAR</span>
+              <h3>Commercial Solar</h3>
+              <p>System planning based on your business energy usage.</p>
+              <strong class="price">Get a custom quote</strong>
+              <a class="btn btn-primary btn-full" href="#contact">Check Price</a>
+            </div>
+          </article>
+        </div>
+        <p class="note">Product images are illustrative. Confirm actual brands, specifications, warranties and prices before publishing.</p>
+      </div>
+    </section>
+
+    <!-- Projects gallery -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">OUR WORK</span>
+          <h2>Solar Projects & <span>Installations</span></h2>
+          <p>Add photos of your completed installations here to showcase your real work.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <figure class="gallery-item gallery-large reveal">
+            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1000&q=80"
+              alt="Solar panel installation example" loading="lazy">
+            <figcaption>Rooftop Solar</figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=800&q=80"
+              alt="Solar panels in an open area" loading="lazy">
+            <figcaption>Solar Energy</figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=800&q=80"
+              alt="Renewable energy landscape" loading="lazy">
+            <figcaption>Green Future</figcaption>
+          </figure>
+        </div>
+        <p class="note">These are sample images, not verified SURYAVOLT customer projects.</p>
+      </div>
+    </section>
+
+    <!-- Advanced solar calculator -->
+    <section class="section calculator-section" id="calculator">
+      <div class="container calculator-grid">
+        <div class="calculator-info reveal">
+          <span class="eyebrow">SOLAR SAVINGS ESTIMATOR</span>
+          <h2>Calculate Your <span>Solar Potential</span></h2>
+          <p>Enter your electricity bill and available roof area for an initial estimate. Actual production and savings depend on location, sunlight, shading, tariffs and system design.</p>
+
+          <ul class="check-list">
+            <li>Estimate a suitable system size</li>
+            <li>See indicative monthly energy production</li>
+            <li>Get a rough project-cost range</li>
+          </ul>
+        </div>
+
+        <form class="calculator-box reveal" id="solarCalculator">
+          <h3>Your Solar Estimate</h3>
+
+          <label for="monthlyBill">Monthly electricity bill (₹)</label>
+          <input id="monthlyBill" name="monthlyBill" type="number"
+            min="0" max="10000000" step="1" placeholder="e.g. 2500" required>
+
+          <label for="roofArea">Usable roof area (sq. ft.)</label>
+          <input id="roofArea" name="roofArea" type="number"
+            min="1" max="1000000" step="1" placeholder="e.g. 500" required>
+
+          <label for="solarType">Solar system type</label>
+          <select id="solarType" name="solarType" required>
+            <option value="on-grid">On-grid solar</option>
+            <option value="hybrid">Hybrid solar</option>
+            <option value="off-grid">Off-grid solar</option>
+          </select>
+
+          <button type="submit" class="btn btn-primary btn-full">Calculate My Estimate</button>
+
+          <div id="calculatorResult" class="calculator-result" aria-live="polite">
+            Your estimate will appear here.
+          </div>
+
+          <p class="note">Indicative estimate only—not a formal quotation or guarantee of savings.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Installation process -->
+    <section class="section section-soft" id="process">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">HOW IT WORKS</span>
+          <h2>Your Solar Journey in <span>4 Steps</span></h2>
+          <p>From the first conversation to system commissioning.</p>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card reveal">
+            <span>01</span><h3>Consultation</h3>
+            <p>Discuss your electricity needs and budget.</p>
+          </article>
+          <article class="process-card reveal">
+            <span>02</span><h3>Site Assessment</h3>
+            <p>Review roof space, shading and electrical requirements.</p>
+          </article>
+          <article class="process-card reveal">
+            <span>03</span><h3>Installation</h3>
+            <p>Install the approved system and compatible equipment.</p>
+          </article>
+          <article class="process-card reveal">
+            <span>04</span><h3>Testing & Handover</h3>
+            <p>Verify system operation and explain safe usage.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">CUSTOMER FEEDBACK</span>
+          <h2>Built on <span>Trust & Service</span></h2>
+          <p>Showcase genuine feedback from your customers here.</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="review-card reveal">
+            <div class="review-stars" aria-label="Sample review">★★★★★</div>
+            <p>“Add a genuine customer review about their experience with your solar installation.”</p>
+            <strong>Customer review placeholder</strong>
+            <small>Replace with permission-based customer feedback</small>
+          </article>
+          <article class="review-card reveal">
+            <div class="review-stars" aria-label="Sample review">★★★★★</div>
+            <p>“Share real feedback about the consultation, installation and service.”</p>
+            <strong>Customer review placeholder</strong>
+            <small>Replace with permission-based customer feedback</small>
+          </article>
+          <article class="review-card reveal">
+            <div class="review-stars" aria-label="Sample review">★★★★★</div>
+            <p>“Publish only authentic comments from actual customers.”</p>
+            <strong>Customer review placeholder</strong>
+            <small>Replace with permission-based customer feedback</small>
+          </article>
+        </div>
+        <p class="note">These are placeholders, not real testimonials. Replace them before publishing.</p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section about-section" id="about">
+      <div class="container about-grid">
+        <div class="about-visual reveal">
+          <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1000&q=85"
+            alt="Electricity infrastructure supporting modern energy" loading="lazy">
+        </div>
+
+        <div class="about-content reveal">
+          <span class="eyebrow">ABOUT SURYAVOLT</span>
+          <h2>Moving Towards a <span>Brighter Future</span></h2>
+          <p>
+            SURYAVOLT HYBRID SOLAR ENERGY aims to help customers explore
+            solar energy options for homes and businesses.
+          </p>
+          <p>
+            Contact our team to discuss your site, energy needs, suitable
+            equipment and installation requirements.
+          </p>
+          <a href="#contact" class="btn btn-primary">Talk to Our Team ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact-section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-info reveal">
+          <span class="eyebrow">LET'S CONNECT</span>
+          <h2>Let's Plan Your <span>Solar Project</span></h2>
+          <p>Tell us what you need. Your enquiry will be prepared for WhatsApp.</p>
+
+          <div class="contact-detail">
+            <span>✉</span>
+            <div><small>Email</small>
+              <a href="mailto:suryavolthybridsolarenergy@gmail.com">
+                suryavolthybridsolarenergy@gmail.com
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <span>◉</span>
+            <div><small>WhatsApp</small>
+              <a href="https://wa.me/916307680761" target="_blank" rel="noopener">
+                Chat with our team
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <span>⌖</span>
+            <div><small>Service area</small>
+              <p>Add your confirmed business address or service locations here.</p>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm">
+          <h3>Request a Free Consultation</h3>
+
+          <label for="customerName">Full name</label>
+          <input id="customerName" name="customerName" type="text"
+            autocomplete="name" maxlength="100" placeholder="Your name" required>
+
+          <label for="customerPhone">Phone number</label>
+          <input id="customerPhone" name="customerPhone" type="tel"
+            autocomplete="tel" maxlength="20" placeholder="Your phone number" required>
+
+          <label for="contactSolarType">Solar requirement</label>
+          <select id="contactSolarType" name="contactSolarType" required>
+            <option value="">Select a requirement</option>
+            <option>Residential rooftop solar</option>
+            <option>Hybrid solar system</option>
+            <option>Commercial solar</option>
+            <option>Solar products</option>
+            <option>Other enquiry</option>
+          </select>
+
+          <label for="customerMessage">Your message</label>
+          <textarea id="customerMessage" name="customerMessage"
+            rows="4" maxlength="1000" placeholder="Tell us about your requirements"></textarea>
+
+          <button type="submit" class="btn btn-primary btn-full">
+            Send Enquiry on WhatsApp ↗
+          </button>
+
+          <p id="contactStatus" class="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Google Maps: replace query with your actual business location -->
+    <section class="section map-section" id="location">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">FIND US</span>
+          <h2>Our <span>Location</span></h2>
+          <p>Update this map to show your actual office or service area.</p>
+        </div>
+
+        <div class="map-frame reveal">
+          <iframe
+            title="Map showing Lucknow, Uttar Pradesh"
+            src="https://www.google.com/maps?q=Lucknow,Uttar%20Pradesh,India&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="note">The map currently shows Lucknow as a sample location. Change it to your real business address.</p>
+      </div>
+    </section>
+
+    <!-- Final call to action -->
+    <section class="cta-section">
+      <div class="container cta-inner reveal">
+        <div>
+          <span class="eyebrow">YOUR SOLAR JOURNEY STARTS HERE</span>
+          <h2>Ready to Explore Solar Energy?</h2>
+          <p>Discuss your energy needs with our team.</p>
+        </div>
+        <a href="#contact" class="btn btn-light">Get a Consultation ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <a class="brand footer-brand" href="#home">
+        <img src="logo.png" alt="">
+        <span>SURYAVOLT <small>HYBRID SOLAR ENERGY</small></span>
+      </a>
+
+      <p>Smart solar solutions for a cleaner energy future.</p>
+
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
-  </section>
-</main>
 
-<footer class="footer">
-  <div class="container footer-main">
-    <a class="brand footer-brand" href="#home">
-      <span class="brand-icon">☀</span>
-      <span>SURYAVOLT <small>HYBRID SOLAR ENERGY</small></span>
-    </a>
-    <p>Clean energy. Smart choices. Brighter future.</p>
-    <a href="#home" class="back-top">Back to top ↑</a>
-  </div>
-  <div class="footer-bottom">
-    <p>© <span id="currentYear"></span> SURYAVOLT HYBRID SOLAR ENERGY. All rights reserved.</p>
-  </div>
-</footer>
+    <div class="container footer-bottom">
+      <p>© <span id="currentYear"></span> SURYAVOLT HYBRID SOLAR ENERGY. All rights reserved.</p>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
 
+  <!-- Floating WhatsApp button -->
+  <a class="floating-whatsapp"
+    href="https://wa.me/916307680761?text=Hello%20SURYAVOLT%20HYBRID%20SOLAR%20ENERGY%2C%20I%20want%20to%20know%20about%20your%20solar%20solutions."
+    target="_blank" rel="noopener"
+    aria-label="Chat with SURYAVOLT on WhatsApp">
+    <span aria-hidden="true">☏</span>
+    <span class="whatsapp-label">Chat on WhatsApp</span>
+  </a>
+
+  <script src="script.js"></script>
 </body>
 </html>
